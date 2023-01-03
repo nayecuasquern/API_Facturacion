@@ -41,6 +41,27 @@ namespace API_FActuración.Controllers
             return factInvoiceHead;
         }
 
+        [HttpGet("ListaFacturas/{cliIdentification}")]
+        public async Task<ActionResult<IEnumerable<FactInvoiceHead>>> ListaFacturas(string cliIdentification)
+        {
+            var datos = await _context
+                .FactInvoiceHeads
+                .Where(p => p.CliIdentification == cliIdentification)
+                .Where(q => q.TypId == 2)
+                .ToListAsync<FactInvoiceHead>();
+            return datos;
+        }
+
+        [HttpGet("ListaFacturasDetalle/")]
+        public async Task<ActionResult<IEnumerable<FactInvoiceHead>>> ListaFacturasDetalle()
+        {
+            var datos = await _context
+                .FactInvoiceHeads
+                .Include("FactInvoiceDetails")
+                .ToListAsync<FactInvoiceHead>();
+            return datos;
+        }
+
         // PUT: api/FactInvoiceHeads/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
