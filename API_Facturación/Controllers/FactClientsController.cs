@@ -22,7 +22,7 @@ namespace APIFActuración.Controllers
             _context = context;
         }
 
-        [EnableCors("AllowOrigin")]
+        [EnableCors("MyAllowSpecificOrigins")]
         // GET: api/FactClients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FactClient>>> GetFactClients()
