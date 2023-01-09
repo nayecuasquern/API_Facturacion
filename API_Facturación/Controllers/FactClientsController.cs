@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_FActuración.Entidades;
+using Microsoft.AspNetCore.Cors;
 
 namespace APIFActuración.Controllers
 {
@@ -13,6 +14,7 @@ namespace APIFActuración.Controllers
     [ApiController]
     public class FactClientsController : ControllerBase
     {
+
         private readonly DbFacturacionContext _context;
 
         public FactClientsController(DbFacturacionContext context)
@@ -20,6 +22,7 @@ namespace APIFActuración.Controllers
             _context = context;
         }
 
+        [EnableCors("AllowOrigin")]
         // GET: api/FactClients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FactClient>>> GetFactClients()

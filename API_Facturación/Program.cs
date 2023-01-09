@@ -2,7 +2,20 @@ using API_FActuración.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
+//
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Politica CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200/");
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -24,6 +37,9 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
