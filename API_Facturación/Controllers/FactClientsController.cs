@@ -30,6 +30,23 @@ namespace APIFActuración.Controllers
             return await _context.FactClients.ToListAsync();
         }
 
+        public async Task<ActionResult<IEnumerable<FactClient>>> GetBuscadorClientes(string? searchFor)
+        {
+            var datos = _context.FactClients;
+
+            if (string.IsNullOrWhiteSpace(searchFor))
+            {
+                return await datos.ToListAsync();
+            }
+            else
+            {
+                return await datos.Where(p =>
+                    p.CliIdentification.ToLower().Contains(searchFor.ToLower()) ||
+                    p.CliName.ToLower().Contains(searchFor.ToLower())
+                    ).ToListAsync();
+            }
+        }
+
         // GET: api/FactClients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FactClient>> GetFactClient(string id)
