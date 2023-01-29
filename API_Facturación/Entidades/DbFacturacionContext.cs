@@ -25,7 +25,7 @@ public partial class DbFacturacionContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=appserver-utn.database.windows.net;Initial Catalog=FacturacionBDD;User ID=adminad;Password=facturacion-1;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        => optionsBuilder.UseSqlServer("Data Source=jjmalesg.database.windows.net;Initial Catalog=grupo4DB;User ID=jeffersonmales;Password=Buenhombre1;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -77,6 +77,7 @@ public partial class DbFacturacionContext : DbContext
             entity.Property(e => e.InvoiceDetailSubtotal).HasColumnName("invoice_detail_subtotal");
             entity.Property(e => e.InvoiceHeadId).HasColumnName("invoice_head_id");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
+            entity.Property(e => e.InvoiceProductName).HasColumnName("invoice_product_name");
 
             entity.HasOne(d => d.InvoiceHead).WithMany(p => p.FactInvoiceDetails)
                 .HasForeignKey(d => d.InvoiceHeadId)
@@ -100,6 +101,7 @@ public partial class DbFacturacionContext : DbContext
             entity.Property(e => e.InvoiceIva).HasColumnName("invoice_IVA");
             entity.Property(e => e.InvoiceSubtotal).HasColumnName("invoice_subtotal");
             entity.Property(e => e.InvoiceTotal).HasColumnName("invoice_total");
+            entity.Property(e => e.InvoiceStatus).HasColumnName("invoice_status");
             entity.Property(e => e.TypId).HasColumnName("typ_id");
 
             entity.HasOne(d => d.CliIdentificationNavigation).WithMany(p => p.FactInvoiceHeads)

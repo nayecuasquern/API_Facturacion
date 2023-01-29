@@ -15,6 +15,8 @@ public partial class FactInvoiceHead
 
     public double? InvoiceTotal { get; set; }
 
+    public bool? InvoiceStatus { get; set; }
+
     public string? CliIdentification { get; set; }
 
     public int? TypId { get; set; }

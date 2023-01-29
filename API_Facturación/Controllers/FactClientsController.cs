@@ -30,6 +30,7 @@ namespace APIFActuración.Controllers
             return await _context.FactClients.ToListAsync();
         }
 
+        [HttpGet("Buscador/")]
         public async Task<ActionResult<IEnumerable<FactClient>>> GetBuscadorClientes(string? searchFor)
         {
             var datos = _context.FactClients;
