@@ -68,6 +68,7 @@ namespace API_FActuración.Controllers
             var datos = await _context
                 .FactInvoiceHeads
                 .Where(p => p.InvoiceHeadId == id)
+                .Include("CliIdentificationNavigation")
                 .Include("FactInvoiceDetails")
                 .ToListAsync<FactInvoiceHead>();
             return datos;
