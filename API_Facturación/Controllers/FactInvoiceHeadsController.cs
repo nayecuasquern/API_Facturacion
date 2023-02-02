@@ -52,6 +52,28 @@ namespace API_FActuración.Controllers
             return datos;
         }
 
+        [HttpGet("FacturasClientes/")]
+        public async Task<ActionResult<IEnumerable<FactInvoiceHead>>> GetFacturasCliente(string? cedula)
+        {
+            var datos = _context.FactInvoiceHeads
+                    .Include("FactInvoiceDetails").Include("CliIdentificationNavigation");
+
+
+            if (string.IsNullOrWhiteSpace(cedula))
+            {
+                return await datos.ToListAsync();
+            }
+            else
+            {
+                return await datos
+                .Where(e => e.CliIdentification == cedula)
+                .Include("FactInvoiceDetails")
+                .Include("Typ")
+                .ToArrayAsync();
+            }
+           
+        }
+
         [HttpGet("ListaFacturasDetalle/")]
         public async Task<ActionResult<IEnumerable<FactInvoiceHead>>> ListaFacturasDetalle()
         {
