@@ -102,6 +102,7 @@ public partial class DbFacturacionContext : DbContext
             entity.Property(e => e.InvoiceSubtotal).HasColumnName("invoice_subtotal");
             entity.Property(e => e.InvoiceTotal).HasColumnName("invoice_total");
             entity.Property(e => e.InvoiceStatus).HasColumnName("invoice_status");
+            entity.Property(e => e.InvoiceNumber).HasColumnName("invoice_number");
             entity.Property(e => e.TypId).HasColumnName("typ_id");
 
             entity.HasOne(d => d.CliIdentificationNavigation).WithMany(p => p.FactInvoiceHeads)

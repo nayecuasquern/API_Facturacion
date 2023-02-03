@@ -17,6 +17,8 @@ public partial class FactInvoiceHead
 
     public bool? InvoiceStatus { get; set; }
 
+    public string InvoiceNumber { get; set; }
+
     public string? CliIdentification { get; set; }
 
     public int? TypId { get; set; }
@@ -26,4 +28,5 @@ public partial class FactInvoiceHead
     public virtual ICollection<FactInvoiceDetail> FactInvoiceDetails { get; } = new List<FactInvoiceDetail>();
 
     public virtual FactPayType? Typ { get; set; }
+    
 }
